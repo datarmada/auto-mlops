@@ -1,1 +1,4 @@
 __pycache__
+build
+dist
+auto_mlops_datarmada.egg-info
