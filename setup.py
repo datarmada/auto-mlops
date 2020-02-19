@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="auto-mlops-datarmada",
-    version="0.0.2",
+    version="0.0.3",
     author="Datarmada",
     author_email="contact@datarmada.com",
     description="Deploy your ML model with 1 line of Python",
