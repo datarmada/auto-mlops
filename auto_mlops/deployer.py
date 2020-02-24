@@ -24,7 +24,7 @@ class Deployer():
             raise TypeError("Your model must be a scikit-learn model")
 
         data = pickle.dumps(model)
-        res = requests.post("https://cloud.datarmada.com/upload", files={"model": data})
+        res = requests.post("https://cloud.datarmada.com/upload", files={"model": data, "email": self.email})
 
         if res.status_code == 200:
             self.route = res.json()["route"]
