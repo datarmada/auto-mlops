@@ -4,11 +4,48 @@ Datarmada aims at **removing all the friction that comes with Machine Learning i
 We understand that Data Scientists are not trained to do that, and sometimes they are
 not even attracted by this Software Engineering / DevOps aspect.
 
-That is why we want to **automate this journey to production**, as well as all
-the **monitoring** part and the **continuous training** one, to maintain the
-deployed model healthy and performant.
+**This package aims at deploying your scikit-learn model on a server in one line**.
+ 
+Your model is deployed on an OVH server so that you own your data and it is compliant with European regulations.
 
-**We don't make any compromise when it comes to performance**. Your model is
-deployed on a Kubernetes cluster on AWS, Azure or Google Cloud Platform to be
-able to handle load and scale when you need to. We use state-of-the-art technologies
-such as gRPC and Terraform to ensure the performances your models deserve.
+## Installation
+Install the package python using pip
+```
+pip install auto-mlops 
+```
+
+## Deploy your model
+
+Import the package and use the ```Deployer``` class. You can now deploy your already trained scikit-learn model. 
+**You will be asked for your email address** so that we can keep track of the ownership of the models deployed, and give you 
+access to monitoring functions in the future.
+
+```python
+from auto_mlops import Deployer
+from sklearn.linear_model import LogisticRegression
+
+deployer = Deployer()
+
+model = LogisticRegression().fit(X_train, y_train)
+
+deployer.deploy(model)
+
+>> Please enter your email address so that we can keep track of your models:
+you@example.com
+
+>> Your model has been deployed to https://cloud.datarmada.com/your-route-id
+```
+
+You can access your route anywhen you want through ```deployer.route``` 
+## Make predictions
+
+You can now send data to the route by making a POST request as following 
+```python
+import requests
+
+res = requests.post("https://cloud.datarmada.com/your-route-id", data={"X": your_data})
+print(res.json())
+
+>> {"prediction":results}
+```
+

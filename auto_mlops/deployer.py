@@ -12,7 +12,7 @@ class Deployer():
         self.email = None
 
     def login(self):
-        email = input("Please enter your email address so that we can keep track of your models.")
+        email = input("Please enter your email address so that we can keep track of your models: \n")
         while not check_email(email):
             email = input("Please enter a valid email address")
         self.email = email
