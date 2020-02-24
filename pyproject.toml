@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "auto-mlops"
+version = "0.1.0"
+description = "Deploy your model in one line of code"
+authors = ["Julien Duquesne <julien@datarmada.com>", "Boris Ghidaglia <boris@datarmada.com>"]
+
+[tool.poetry.dependencies]
+python="^3.7"
+sklearn = "^0.0"
+requests = "^2.23.0"
+
