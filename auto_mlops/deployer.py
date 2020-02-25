@@ -1,8 +1,8 @@
 import logging
 import pickle
-
 import requests
-from sklearn.base import BaseEstimator
+
+from auto_mlops.pipeline_wrapper import pipeline_wrapper
 from auto_mlops.utils import check_email
 
 
@@ -12,23 +12,27 @@ class Deployer():
         self.email = None
 
     def login(self):
-        email = input("Please enter your email address so that we can keep track of your models: \n")
+        email = input("Please enter your email address so that we can keep track of your pipelines: \n")
         while not check_email(email):
-            email = input("Please enter a valid email address")
+            email = input("Please enter a valid email address: \n")
         self.email = email
 
-    def deploy(self, model: BaseEstimator):
+    def deploy(self, pipeline: list):
         if not self.email:
             self.login()
-        if not issubclass(model.__class__, BaseEstimator):
-            raise TypeError("Your model must be a scikit-learn model")
 
-        data = pickle.dumps(model)
-        res = requests.post("https://cloud.datarmada.com/upload", files={"model": data, "email": self.email})
+        pipeline_wrapper = pipeline_wrapper(pipeline)
+
+        file = pickle.dumps(pipeline_wrapper)
+        res = requests.post(
+            "https://cloud.datarmada.com/upload",
+            files = { "pipeline" : file },
+            data = { "email" : self.email }
+        )
 
         if res.status_code == 200:
             self.route = res.json()["route"]
-            print(f"Your model has been deployed to {self.route}")
+            print(f"Your pipeline has been deployed to {self.route}")
             return self.route
         else:
             logging.error(f"The request responded with the status code {res.status_code}")
