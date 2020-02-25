@@ -1,6 +1,6 @@
 from typing import Callable, List, Union, Any
 
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import make_pipeline, Pipeline
 
 
 class PipelineElement:
@@ -15,7 +15,7 @@ class PipelineElement:
         return self
 
 
-def pipeline_wrapper(pipeline: List[Union[Callable, Any]]):
+def pipeline_wrapper(pipeline: List[Union[Callable, Any]]) -> Pipeline:
     clean_pipeline = []
     transformers = pipeline[:-1]
     estimator = pipeline[-1]
@@ -25,7 +25,8 @@ def pipeline_wrapper(pipeline: List[Union[Callable, Any]]):
             raise TypeError(f'{elt} should be either callable or implement a transform method')
         if callable(elt):
             clean_pipeline.append(PipelineElement(elt))
-        elif not has_method(elt, "fit"):
+            continue
+        if not has_method(elt, "fit"):
             elt.fit = lambda self, x, y: self
         clean_pipeline.append(elt)
 
@@ -37,5 +38,5 @@ def pipeline_wrapper(pipeline: List[Union[Callable, Any]]):
     return make_pipeline(*clean_pipeline)
 
 
-def has_method(x: Any, method_name: str):
+def has_method(x: Any, method_name: str) -> bool:
     return getattr(x, method_name, None) is not None
