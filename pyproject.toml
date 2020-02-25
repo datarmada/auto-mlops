@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "auto-mlops"
-version = "0.1.1"
+version = "0.1.2"
 description = "Deploy your model in one line of code"
 authors = ["Julien Duquesne <julien@datarmada.com>", "Boris Ghidaglia <boris@datarmada.com>"]
 readme = "./README.md"
