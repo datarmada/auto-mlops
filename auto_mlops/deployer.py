@@ -1,12 +1,13 @@
 import logging
 import pickle
-import requests
+from typing import List
 
+import requests
 from auto_mlops.pipeline_wrapper import pipeline_wrapper
 from auto_mlops.utils import check_email
 
 
-class Deployer():
+class Deployer:
     def __init__(self):
         self.route = None
         self.email = None
@@ -17,17 +18,17 @@ class Deployer():
             email = input("Please enter a valid email address: \n")
         self.email = email
 
-    def deploy(self, pipeline: list):
+    def deploy(self, pipeline: List):
         if not self.email:
             self.login()
 
-        pipeline_wrapper = pipeline_wrapper(pipeline)
+        pipeline = pipeline_wrapper(pipeline)
 
-        file = pickle.dumps(pipeline_wrapper)
+        file = pickle.dumps(pipeline)
         res = requests.post(
             "https://cloud.datarmada.com/upload",
-            files = { "pipeline" : file },
-            data = { "email" : self.email }
+            files={"pipeline": file},
+            data={"email": self.email}
         )
 
         if res.status_code == 200:
