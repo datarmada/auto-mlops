@@ -29,7 +29,6 @@ The pipeline elements (except for the last one) must be either :
 - An instance of a class implementing ```fit``` and ```transform``` methods
 
 The last element of the pipeline must be an instance of a class implementing ```fit``` and ```predict``` methods.
-
 ```python
 
 from sklearn.linear_model import LogisticRegression
@@ -66,7 +65,7 @@ deployer.deploy([preprocess, featurizer, log_reg])
 >> Please enter your email address so that we can keep track of your models:
 you@example.com
 
->> Your model has been deployed to https://cloud.datarmada.com/{id}
+>> Your model has been deployed to https://cloud.datarmada.com/id
 ```
 
 You can access your route whenever you want through ```deployer.route```
@@ -77,7 +76,7 @@ You can now send data to the route by making a POST request as following
 import requests
 
 res = requests.post(
-  "https://cloud.datarmada.com/{id}",
+  "https://cloud.datarmada.com/id",
   data = {
     "X": your_raw_data
   }
