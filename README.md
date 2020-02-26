@@ -1,4 +1,4 @@
-# Deploy your ML models in production painlessly, immediately and scalably
+# Deploy your ML pipelines in production painlessly, immediately and scalably
 
 Datarmada aims at **removing all the friction that comes with Machine Learning in production**.
 We understand that Data Scientists are not trained to do that, and sometimes they are
@@ -6,7 +6,7 @@ not even attracted by this Software Engineering / DevOps aspect.
 
 **This package aims at deploying your scikit-learn pipeline on a server in one line**.
 
-Your model is deployed on an OVH server so that you own your data and it is compliant with European regulations.
+Your pipeline is deployed on an OVH server so that you own your data and it is compliant with European regulations.
 
 ## Installation
 Install the package python using pip
@@ -14,16 +14,16 @@ Install the package python using pip
 pip install auto-mlops
 ```
 
-## Deploy your model
+## Deploy your pipeline
 
-Import the package and use the ```Deployer``` class.
+Import the ```Deployer``` class from the package.
 
 ```python
 from auto_mlops import Deployer
 deployer = Deployer()
 ```
 
-You can now deploy your pipeline by passing to the ```deploy``` method a list containing all of its elements.
+Now, deploy your pipeline by passing to the ```deploy``` method a list containing all of its elements.
 The pipeline elements (except for the last one) must be either :
 - A function returning transformed data if your pipeline element doesn't need to be fitted
 - An instance of a class implementing ```fit``` and ```transform``` methods otherwise
@@ -54,18 +54,18 @@ log_reg.fit(featurized_data, y)
 deployer.deploy([preprocess, featurizer, log_reg])
 
 ```
-Remember your elements must be fitted if they need to !
+**Remember your elements must be fitted if they need to !**
 
-**You will be asked for your email address** so that we can keep track of the ownership of the models deployed, and give you
+**You will be asked for your email address** so that we can keep track of the ownership of the pipelines deployed, and give you
 access to monitoring functions in the future.
 
 ```python
 deployer.deploy([preprocess, featurizer, log_reg])
 
->> Please enter your email address so that we can keep track of your models:
+>> Please enter your email address so that we can keep track of your pipelines:
 you@example.com
 
->> Your model has been deployed to https://cloud.datarmada.com/id
+>> Your pipeline has been deployed to https://cloud.datarmada.com/id
 ```
 
 You can access your route whenever you want through ```deployer.route```
