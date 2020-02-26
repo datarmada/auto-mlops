@@ -23,9 +23,9 @@ from auto_mlops import Deployer
 deployer = Deployer()
 ```
 
-You can now deploy your pipeline by passing to the ```deploy``` method a list containing all its elements.
+You can now deploy your pipeline by passing to the ```deploy``` method a list containing all of its elements.
 The pipeline elements (except for the last one) must be either :
-- A function returning transformed data if your preprocessor doesn't need to be fitted
+- A function returning transformed data if your pipeline element doesn't need to be fitted
 - An instance of a class implementing ```fit``` and ```transform``` methods otherwise
 
 The last element of the pipeline must be an instance of a class implementing ```fit``` and ```predict``` methods.
