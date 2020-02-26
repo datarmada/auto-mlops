@@ -77,8 +77,8 @@ import requests
 
 res = requests.post(
   "https://cloud.datarmada.com/id",
-  data = {
-    "X": your_raw_data
+  json = {
+    "data": your_raw_data
   }
 )
 
@@ -86,3 +86,6 @@ print(res.json())
 
 >> { "prediction" : prediction }
 ```
+
+It may be possible that one of the package you are using is not available in the environment we are deploying your model. 
+If you receive an error saying so, please email us at contact@datarmada.com so that we can fix it.
