@@ -1,5 +1,5 @@
 import logging
-import pickle
+import cloudpickle
 from typing import List
 
 import requests
@@ -24,7 +24,7 @@ class Deployer:
 
         pipeline = pipeline_wrapper(pipeline)
 
-        file = pickle.dumps(pipeline)
+        file = cloudpickle.dumps(pipeline)
         res = requests.post(
             "https://cloud.datarmada.com/upload",
             files={"pipeline": file},
