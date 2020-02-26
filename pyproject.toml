@@ -1,5 +1,11 @@
+[tool.poetry]
+name = "auto-mlops"
+version = "0.1.7"
+description = "Deploy your model in one line of code"
+authors = ["Datarmada <contact@datarmada.com>"]
+
 [tool.poetry.dependencies]
 python="^3.7"
-scikit-learn = "^0.22.1"
+sklearn = "^0.0"
 requests = "^2.23.0"
 cloudpickle = "^1.3.0"
