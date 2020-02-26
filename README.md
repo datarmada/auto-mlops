@@ -25,8 +25,8 @@ deployer = Deployer()
 
 You can now deploy your pipeline by passing to the ```deploy``` method a list containing all its elements.
 The pipeline elements (except for the last one) must be either :
-- A function returning transformed data
-- An instance of a class implementing ```fit``` and ```transform``` methods
+- A function returning transformed data if your preprocessor doesn't need to be fitted
+- An instance of a class implementing ```fit``` and ```transform``` methods otherwise
 
 The last element of the pipeline must be an instance of a class implementing ```fit``` and ```predict``` methods.
 ```python
