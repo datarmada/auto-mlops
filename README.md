@@ -1,4 +1,4 @@
-# Deploy your ML pipelines in production painlessly, immediately and scalably
+# Deploy your ML pipelines effortlessly, scalably and reliably
 
 Datarmada aims at **removing all the friction that comes with Machine Learning in production**.
 We understand that Data Scientists are not trained to do that, and sometimes they are
