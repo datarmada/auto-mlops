@@ -5,7 +5,7 @@ from typing import List
 import requests
 from auto_mlops.pipeline_wrapper import pipeline_wrapper
 from auto_mlops.utils import check_email
-
+import sys
 
 class Deployer:
     def __init__(self):
@@ -26,7 +26,7 @@ class Deployer:
 
         file = cloudpickle.dumps(pipeline)
         res = requests.post(
-            "https://cloud.datarmada.com/upload",
+            f"https://cloud.datarmada.com/{sys.version_info.major}{sys.version_info.minor}/upload",
             files={"pipeline": file},
             data={"email": self.email}
         )
