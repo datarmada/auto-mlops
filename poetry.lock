@@ -105,8 +105,8 @@ secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "cer
 socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [metadata]
-content-hash = "3fd0adbfb60399e70218029f54d03fe3336c3e1ab954f4e0f010cb53ce162735"
-python-versions = "^3.7"
+content-hash = "70b0205e817db9c28033ca9a74187e3d512e64799b82e8ee1d758c2fff7517b4"
+python-versions = "^3.6"
 
 [metadata.files]
 certifi = [

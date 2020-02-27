@@ -4,7 +4,7 @@ Datarmada aims at **removing all the friction that comes with Machine Learning i
 We understand that Data Scientists are not trained to do that, and sometimes they are
 not even attracted by this Software Engineering / DevOps aspect.
 
-**This package aims at deploying your scikit-learn pipeline on a server in one line**.
+**This package aims at deploying your machine learning pipeline on a server in one line**.
 
 Your pipeline is deployed on an OVH server so that you own your data and it is compliant with European regulations.
 
@@ -26,9 +26,11 @@ deployer = Deployer()
 Now, deploy your pipeline by passing to the ```deploy``` method a list containing all of its elements.
 The pipeline elements (except for the last one) must be either :
 - A function returning transformed data if your pipeline element doesn't need to be fitted
-- An instance of a class implementing ```fit``` and ```transform``` methods otherwise
+- An instance of a class implementing a ```transform``` method
 
-The last element of the pipeline must be an instance of a class implementing ```fit``` and ```predict``` methods.
+The last element of the pipeline must be an instance of a class a ```predict``` methods, such as a 
+scikit-learn or a Keras model.
+
 ```python
 
 from sklearn.linear_model import LogisticRegression
@@ -38,15 +40,9 @@ def preprocess(raw_data):
     return preprocessed_data
 
 class Featurizer:
-    def fit(self, preprocessed_data, y):
-        # fit the featurizer
-        return self
-
     def transform(self, preprocessed_data):
         # transform the data
         return featurized_data
-
-featurizer = Featurizer().fit(preprocessed_data)
 
 log_reg = LogisticRegression()
 log_reg.fit(featurized_data, y)

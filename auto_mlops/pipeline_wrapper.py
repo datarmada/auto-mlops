@@ -30,8 +30,11 @@ def pipeline_wrapper(pipeline: List[Union[Callable, Any]]) -> Pipeline:
             elt.fit = lambda self, x, y: self
         clean_pipeline.append(elt)
 
-    if not (has_method(estimator, "predict") and has_method(estimator, "fit")):
-        raise TypeError('Last element of the pipeline must have fit and predict methods')
+    if not has_method(estimator, "predict"):
+        raise TypeError('Last element of the pipeline must have a predict method')
+
+    if not has_method(estimator, "fit"):
+        estimator.fit = lambda self, x, y: self
 
     clean_pipeline.append(estimator)
 
