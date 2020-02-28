@@ -29,8 +29,8 @@ The pipeline elements (except for the last one) must be either :
 - A function returning transformed data if your pipeline element doesn't need to be fitted
 - An instance of a class implementing a ```transform``` method
 
-The last element of the pipeline must be an instance of a class a ```predict``` methods, such as a 
-scikit-learn or a Keras model.
+The last element of the pipeline must be an instance of a class a with a ```predict``` method, such as a 
+scikit-learn model.
 
 ```python
 
@@ -63,7 +63,7 @@ deployer.deploy([preprocess, featurizer, log_reg])
 you@example.com
 
 >> Your pipeline has been deployed to:
-https://cloud.datarmada.com/<i>{python-version}</i></<i>{id}</i>
+<u>https://cloud.datarmada.com/<i>{python-version}</i>/<i>{id}</i></u>
 </pre>
 
 You can access your route whenever you want through ```deployer.route```
