@@ -1,12 +1,13 @@
 # Deploy your ML pipelines effortlessly, scalably and reliably
 
-Datarmada aims at **removing all the friction that comes with Machine Learning in production**.
+Datarmada wants to **remove all the friction that comes with Machine Learning in production**.
 We understand that Data Scientists are not trained to do that, and sometimes they are
-not even attracted by this Software Engineering / DevOps aspect.
+not even attracted by this Software Engineering / DevOps aspect. With this package, we make a first
+step in this direction.
 
-**This package aims at deploying your machine learning pipeline on a server in one line**.
+**auto-mlops aims at deploying your machine learning pipeline on a server in one line**.
 
-Your pipeline is deployed on an OVH server so that you own your data and it is compliant with European regulations.
+Your pipeline is deployed on an OVH server.
 
 ## Installation
 Install the package python using pip
@@ -52,17 +53,18 @@ deployer.deploy([preprocess, featurizer, log_reg])
 ```
 **Remember your elements must be fitted if they need to !**
 
-**You will be asked for your email address** so that we can keep track of the ownership of the pipelines deployed, and give you
-access to monitoring functions in the future.
+**You will be asked for your email address** so that we can keep track of the ownership of the pipelines deployed
+and to reach you out if a problem shows up.
 
-```python
+<pre>
 deployer.deploy([preprocess, featurizer, log_reg])
 
 >> Please enter your email address so that we can keep track of your pipelines:
 you@example.com
 
->> Your pipeline has been deployed to https://cloud.datarmada.com/id
-```
+>> Your pipeline has been deployed to:
+https://cloud.datarmada.com/<i>{python-version}</i></<i>{id}</i>
+</pre>
 
 You can access your route whenever you want through ```deployer.route```
 ## Make predictions
@@ -72,14 +74,13 @@ You can now send data to the route by making a POST request as following
 import requests
 
 res = requests.post(
-  "https://cloud.datarmada.com/id",
+  "https://cloud.datarmada.com/{python-version}/{id}",
   json = {
     "data": your_raw_data
   }
 )
 
 print(res.json())
-
 >> { "prediction" : prediction }
 ```
 
