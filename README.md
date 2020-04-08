@@ -1,3 +1,6 @@
+> #### :warning: Warning :warning:
+> We have downed our servers for this project. If you have any questions, feel free to contact us at contact@datarmada.com
+
 # Deploy your ML pipelines effortlessly, scalably and reliably
 
 Datarmada wants to **remove all the friction that comes with Machine Learning in production**.
